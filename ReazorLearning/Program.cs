@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using ReazorLearning.DataLayer.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddDbContext<DataBaseContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("LernReazorPage"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
