@@ -7,9 +7,9 @@ namespace ReazorLearning.Pages.Admin.Category
 {
     public class CreateModel : PageModel
     {
-        private readonly ICategoryRepository _category;
+        private readonly IUnitOfWork _category;
 
-        public CreateModel(ICategoryRepository category)
+        public CreateModel(IUnitOfWork category)
         {
             _category = category;
         }
@@ -24,7 +24,7 @@ namespace ReazorLearning.Pages.Admin.Category
            
             if (ModelState.IsValid)
             {
-               _category.Add(Category);
+               _category.Category.Add(Category);
                _category.Save();
                 TempData["Msg"] = "Category Created.";
                 return RedirectToPage(nameof(Index));

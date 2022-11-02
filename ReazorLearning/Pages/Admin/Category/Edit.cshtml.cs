@@ -8,9 +8,9 @@ namespace ReazorLearning.Pages.Admin.Category
 {
     public class EditModel : PageModel
     {
-        private readonly ICategoryRepository _category;
+        private readonly IUnitOfWork _category;
 
-        public EditModel(ICategoryRepository category)
+        public EditModel(IUnitOfWork category)
         {
             _category = category;
         }
@@ -18,7 +18,7 @@ namespace ReazorLearning.Pages.Admin.Category
         public ReazorLearninig.Models.Models.Category Category { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            Category = _category.GetFirstOrDefault(c => c.Id.Equals(id));
+            Category = _category.Category.GetFirstOrDefault(c => c.Id.Equals(id));
             if (Category == null)
             {
                 return NotFound();
@@ -29,8 +29,8 @@ namespace ReazorLearning.Pages.Admin.Category
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var category =  _category.GetFirstOrDefault(c => c.Id.Equals(Category.Id));
-           _category.Update(Category);
+            var category =  _category.Category.GetFirstOrDefault(c => c.Id.Equals(Category.Id));
+           _category.Category.Update(Category);
            _category.Save();
             TempData["Msg"] = "Category Updated";
             return RedirectToPage(nameof(Index));

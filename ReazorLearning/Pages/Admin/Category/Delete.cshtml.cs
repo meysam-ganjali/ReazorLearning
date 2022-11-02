@@ -8,9 +8,9 @@ namespace ReazorLearning.Pages.Admin.Category
 {
     public class DeleteModel : PageModel
     {
-        private readonly ICategoryRepository _category;
+        private readonly IUnitOfWork _category;
 
-        public DeleteModel(ICategoryRepository category)
+        public DeleteModel(IUnitOfWork category)
         {
             _category = category;
         }
@@ -18,7 +18,7 @@ namespace ReazorLearning.Pages.Admin.Category
         public ReazorLearninig.Models.Models.Category Category { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            Category = _category.GetFirstOrDefault(b => b.Id.Equals(id));
+            Category = _category.Category.GetFirstOrDefault(b => b.Id.Equals(id));
             if (Category == null)
             {
                 return NotFound();
@@ -29,8 +29,8 @@ namespace ReazorLearning.Pages.Admin.Category
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var category = _category.GetFirstOrDefault(c => c.Id.Equals(Category.Id));
-           _category.Remove(category);
+            var category = _category.Category.GetFirstOrDefault(c => c.Id.Equals(Category.Id));
+           _category.Category.Remove(category);
            _category.Save();
             TempData["Msg"] = "Category Is Removed";
             return RedirectToPage(nameof(Index));

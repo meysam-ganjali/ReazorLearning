@@ -8,9 +8,9 @@ namespace ReazorLearning.Pages.Admin.Category
 {
     public class IndexModel : PageModel
     {
-        private readonly ICategoryRepository _category;
+        private readonly IUnitOfWork _category;
 
-        public IndexModel(ICategoryRepository category)
+        public IndexModel(IUnitOfWork category)
         {
             _category = category;
         }
@@ -19,7 +19,7 @@ namespace ReazorLearning.Pages.Admin.Category
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Categories = _category.GetAll();
+            Categories = _category.Category.GetAll();
            
             return Page();
         }

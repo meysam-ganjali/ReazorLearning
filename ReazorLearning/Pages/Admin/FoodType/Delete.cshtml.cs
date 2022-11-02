@@ -7,9 +7,9 @@ namespace ReazorLearning.Pages.Admin.FoodType
 {
     public class DeleteModel : PageModel
     {
-        private readonly IFoodTypeRepository _foodType;
+        private readonly IUnitOfWork _foodType;
 
-        public DeleteModel(IFoodTypeRepository foodType)
+        public DeleteModel(IUnitOfWork foodType)
         {
             _foodType = foodType;
         }
@@ -17,7 +17,7 @@ namespace ReazorLearning.Pages.Admin.FoodType
         public ReazorLearninig.Models.Models.FoodType FoodType { get; set; }
         public async  Task<IActionResult> OnGetAsync(int id)
         {
-            FoodType = _foodType.GetFirstOrDefault(c => c.Id.Equals(id));
+            FoodType = _foodType.FoodType.GetFirstOrDefault(c => c.Id.Equals(id));
             if (FoodType == null)
             {
                 return NotFound();
@@ -28,8 +28,8 @@ namespace ReazorLearning.Pages.Admin.FoodType
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var foodType = _foodType.GetFirstOrDefault(c => c.Id.Equals(FoodType.Id));
-           _foodType.Remove(foodType);
+            var foodType = _foodType.FoodType.GetFirstOrDefault(c => c.Id.Equals(FoodType.Id));
+           _foodType.FoodType.Remove(foodType);
            _foodType.Save();
             TempData["Msg"] = "Food Type Deleted.";
             return RedirectToPage(nameof(Index));

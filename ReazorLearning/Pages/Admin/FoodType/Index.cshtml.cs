@@ -8,9 +8,9 @@ namespace ReazorLearning.Pages.Admin.FoodType
 {
     public class IndexModel : PageModel
     {
-        private readonly IFoodTypeRepository _foodType;
+        private readonly IUnitOfWork _foodType;
 
-        public IndexModel(IFoodTypeRepository foodType)
+        public IndexModel(IUnitOfWork foodType)
         {
             _foodType = foodType;
         }
@@ -18,7 +18,7 @@ namespace ReazorLearning.Pages.Admin.FoodType
         public IEnumerable<ReazorLearninig.Models.Models.FoodType> FoodTypes { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            FoodTypes = _foodType.GetAll();
+            FoodTypes = _foodType.FoodType.GetAll();
             return Page();
         }
     }

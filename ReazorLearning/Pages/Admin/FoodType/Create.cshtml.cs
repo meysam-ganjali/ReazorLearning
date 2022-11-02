@@ -7,9 +7,9 @@ namespace ReazorLearning.Pages.Admin.FoodType
 {
     public class CreateModel : PageModel
     {
-        private readonly IFoodTypeRepository _foodType;
+        private readonly IUnitOfWork _foodType;
 
-        public CreateModel(IFoodTypeRepository foodType)
+        public CreateModel(IUnitOfWork foodType)
         {
             _foodType = foodType;
         }
@@ -23,7 +23,7 @@ namespace ReazorLearning.Pages.Admin.FoodType
         {
             if (ModelState.IsValid)
             {
-                _foodType.Add(FoodType);
+                _foodType.FoodType.Add(FoodType);
                 _foodType.Save();
                 TempData["Msg"] = "Food Type Created.";
                 return RedirectToPage(nameof(Index));
