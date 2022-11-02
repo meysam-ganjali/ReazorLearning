@@ -8,54 +8,54 @@
             <h2 class="text-primary">Category List</h2>
         </div>
         <div class="col-6 text-end">
-            <a href="#" class="btn btn-success"> <i class="bi bi-plus-square"></i>&nbsp;Create Category</a>
+            <a asp-page="Create" class="btn btn-success"> <i class="bi bi-plus-square"></i>&nbsp;Create Category</a>
 
         </div>
     </div>
     <div class="row mt-3 p-1">
         <table class="table table-bordered table-striped table-hover">
             <thead>
-                <tr>
-                    <th>
-                        Name
-                        <span>
-                            <a href="/admin/category/index?order=des" class="btn"><strong><i class="bi bi-arrow-down"></i></strong></a>
-                        </span>
-                        <span>
-                            <a href="/admin/category/index?order=asi" class="btn"><strong> <i class="bi bi-arrow-up"></i></strong></a>
-                        </span>
-                        <div>
-                        </div>
-                    </th>
-                    <th>DispalyOrder</th>
-                    <th><i class="bi bi-tools"></i></th>
-                </tr>
+            <tr>
+                <th>
+                    Name
+                    <span>
+                        <a href="/admin/category/index?order=des" class="btn"><strong><i class="bi bi-arrow-down"></i></strong></a>
+                    </span>
+                    <span>
+                        <a href="/admin/category/index?order=asi" class="btn"><strong> <i class="bi bi-arrow-up"></i></strong></a>
+                    </span>
+                    <div>
+                    </div>
+                </th>
+                <th>DispalyOrder</th>
+                <th><i class="bi bi-tools"></i></th>
+            </tr>
             </thead>
             <tbody>
-                @if (Model.Categories == null)
+            @if (Model.Categories == null)
+            {
+                <tr>
+                    <td colspan="3">
+                        <p class="text-danger text-center">The List Is Empty</p>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var category in Model.Categories)
                 {
                     <tr>
-                        <td colspan="3">
-                            <p class="text-danger text-center">The List Is Empty</p>
+                        <td>@category.Name</td>
+                        <td>@category.DisplayOrder</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-info"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                            </div>
                         </td>
                     </tr>
                 }
-                else
-                {
-                    @foreach (var category in Model.Categories)
-                    {
-                        <tr>
-                            <td>@category.Name</td>
-                            <td>@category.DisplayOrder</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-info"><i class="bi bi-pencil"></i></a>
-                                    <a class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                }
+            }
             </tbody>
         </table>
     </div>
