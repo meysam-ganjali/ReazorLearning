@@ -2,22 +2,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ReazorLearning.DataLayer.Data;
+using ReazorLearning.DataLayer.Repository.IRepository;
 
 namespace ReazorLearning.Pages.Admin.Category
 {
     public class EditModel : PageModel
     {
-        private readonly DataBaseContext _db;
+        private readonly ICategoryRepository _category;
 
-        public EditModel(DataBaseContext db)
+        public EditModel(ICategoryRepository category)
         {
-            _db = db;
+            _category = category;
         }
         [BindProperty]
         public ReazorLearninig.Models.Models.Category Category { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            Category = await _db.Categories.FindAsync(id);
+            Category = _category.GetFirstOrDefault(c => c.Id.Equals(id));
             if (Category == null)
             {
                 return NotFound();
@@ -28,10 +29,9 @@ namespace ReazorLearning.Pages.Admin.Category
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var category = await _db.Categories.FirstOrDefaultAsync(c => c.Id.Equals(Category.Id));
-            category.Name = Category.Name;
-            category.DisplayOrder = Category.DisplayOrder;
-            var res = await _db.SaveChangesAsync();
+            var category =  _category.GetFirstOrDefault(c => c.Id.Equals(Category.Id));
+           _category.Update(Category);
+           _category.Save();
             TempData["Msg"] = "Category Updated";
             return RedirectToPage(nameof(Index));
         }

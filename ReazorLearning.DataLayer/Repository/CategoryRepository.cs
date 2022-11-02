@@ -18,7 +18,7 @@ public class CategoryRepository : Repository<Category>, ICategoryRepository
         var ObjFromDb = _db.Categories.FirstOrDefault(c => c.Id.Equals(category.Id));
         ObjFromDb.Name = category.Name;
         ObjFromDb.DisplayOrder = category.DisplayOrder;
-        Save();
+        
     }
 
     public void Save()

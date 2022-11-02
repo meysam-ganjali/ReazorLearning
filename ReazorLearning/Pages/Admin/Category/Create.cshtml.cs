@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ReazorLearning.DataLayer.Data;
+using ReazorLearning.DataLayer.Repository.IRepository;
 
 namespace ReazorLearning.Pages.Admin.Category
 {
     public class CreateModel : PageModel
     {
-        private readonly DataBaseContext _db;
+        private readonly ICategoryRepository _category;
 
-        public CreateModel(DataBaseContext db)
+        public CreateModel(ICategoryRepository category)
         {
-            _db = db;
+            _category = category;
         }
         [BindProperty]
         public ReazorLearninig.Models.Models.Category Category { get; set; }
@@ -23,9 +24,9 @@ namespace ReazorLearning.Pages.Admin.Category
            
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(Category);
-                await _db.SaveChangesAsync();
-                TempData["Msg"] = "Categoe Created.";
+               _category.Add(Category);
+               _category.Save();
+                TempData["Msg"] = "Category Created.";
                 return RedirectToPage(nameof(Index));
             }
             return Page();
