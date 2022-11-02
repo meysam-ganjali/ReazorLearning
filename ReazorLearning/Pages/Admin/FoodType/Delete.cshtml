@@ -1,25 +1,19 @@
 ﻿@page
-@model ReazorLearning.Pages.Admin.Category.DeleteModel
+@model ReazorLearning.Pages.Admin.FoodType.DeleteModel
 @{
 }
 <div class="container p-3">
     <div class="row alert alert-danger">
-        <h2 class="text-primary">Remove Category</h2>
+        <h2 class="text-primary">Remove Food Type</h2>
     </div>
     <div class="row p-4 border border-2">
         <div class="col-6">
             <form method="post">
-                <input type="hidden" asp-for="Category.Id" />
+                <input type="hidden" asp-for="FoodType.Id" />
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label">Category Name :</label>
                     <div class="col-sm-9">
-                        <input readonly type="text" asp-for="Category.Name" class="form-control">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">DisplayOrder :</label>
-                    <div class="col-sm-9">
-                        <input readonly asp-for="Category.DisplayOrder" type="number" class="form-control">
+                        <input readonly type="text" asp-for="FoodType.Name" class="form-control">
                     </div>
                 </div>
                 <div class="col-12 mt-3">

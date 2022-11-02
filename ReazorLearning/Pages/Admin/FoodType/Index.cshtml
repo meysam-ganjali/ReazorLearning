@@ -1,0 +1,59 @@
+﻿@page
+@model ReazorLearning.Pages.Admin.FoodType.IndexModel
+@{
+}
+<div class="container p3">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @if (TempData["Msg"] != null)
+    {
+        <script type="text/javascript">
+            toastr.success('@TempData["Msg"]')
+        </script>
+    }
+    <div class="row p-4">
+        <div class="col-6">
+            <h2 class="text-primary">Food Type List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="Create" class="btn btn-success"> <i class="bi bi-plus-square"></i>&nbsp;Create Food Type</a>
+        </div>
+    </div>
+    <div class="row mt-3 p-1">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th><i class="bi bi-tools"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.FoodTypes == null || Model.FoodTypes.Count() < 1)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <p class="text-danger text-center">The List Is Empty</p>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var foodType in Model.FoodTypes)
+                    {
+                        <tr>
+                            <td>@foodType.Name</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" asp-page="Edit" asp-route-id="@foodType.Id"><i class="bi bi-pencil"></i></a>
+                                    <a class="btn btn-danger" asp-page="Delete" asp-route-id="@foodType.Id"><i class="bi bi-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

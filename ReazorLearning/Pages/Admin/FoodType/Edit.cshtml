@@ -1,0 +1,28 @@
+﻿@page
+@model ReazorLearning.Pages.Admin.FoodType.EditModel
+@{
+}
+<div class="container p-3">
+    <div class="row alert alert-info">
+        <h2 class="text-primary">Edit Food Type</h2>
+    </div>
+    <div class="row p-4 border border-2">
+        <div class="col-6">
+            <form method="post">
+                <input type="hidden" asp-for="FoodType.Id" />
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Category Name :</label>
+                    <div class="col-sm-9">
+                        <input type="text" asp-for="FoodType.Name" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 mt-3">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <a asp-page="index" class="btn btn-secondary">Back To List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
