@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ReazorLearning.DataLayer.Data;
+using ReazorLearning.DataLayer.Repository;
+using ReazorLearning.DataLayer.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ builder.Services.AddDbContext<DataBaseContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("LernReazorPage"));
 });
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Repository\IRepository\" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
