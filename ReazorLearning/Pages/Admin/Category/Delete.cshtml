@@ -1,31 +1,30 @@
 ﻿@page
-@model ReazorLearning.Pages.Admin.Category.CreateModel
+@model ReazorLearning.Pages.Admin.Category.DeleteModel
 @{
 }
 <div class="container p-3">
-    <div class="row alert alert-info">
-        <h2 class="text-info">Create Category</h2>
+    <div class="row alert alert-danger">
+        <h2 class="text-primary">Remove Category</h2>
     </div>
     <div class="row p-4 border border-2">
         <div class="col-6">
             <form method="post">
+                <input type="hidden" asp-for="Category.Id" />
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label">Category Name :</label>
                     <div class="col-sm-9">
                         <input type="text" asp-for="Category.Name" class="form-control">
-                        <span asp-validation-for="Category.Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label">DisplayOrder :</label>
                     <div class="col-sm-9">
                         <input asp-for="Category.DisplayOrder" type="number" class="form-control">
-                        <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-12 mt-3">
                     <div class="btn-group">
-                        <button type="submit" class="btn btn-success">Create</button>
+                        <button type="submit" class="btn btn-warning">Remove</button>
                         <a asp-page="index" class="btn btn-secondary">Back To List</a>
                     </div>
                 </div>
@@ -33,7 +32,3 @@
         </div>
     </div>
 </div>
-@section Scripts
-{
-    <partial name="Shared/_ValidationScriptsPartial"/>
-}

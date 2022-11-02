@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReazorLearning", "ReazorLearning\ReazorLearning.csproj", "{4F3C1E89-51B7-48CA-900B-EAE67683EFE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReazorLearninig.Models", "ReazorLearninig.Models\ReazorLearninig.Models.csproj", "{BBDDE6D7-62BC-492F-906C-E83233558952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReazorLearninig.Models", "ReazorLearninig.Models\ReazorLearninig.Models.csproj", "{BBDDE6D7-62BC-492F-906C-E83233558952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReazorLearning.DataLayer", "ReazorLearning.DataLayer\ReazorLearning.DataLayer.csproj", "{232341A9-3F0B-46E9-8AE8-530A7833CD30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReazorLearning.DataLayer", "ReazorLearning.DataLayer\ReazorLearning.DataLayer.csproj", "{232341A9-3F0B-46E9-8AE8-530A7833CD30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReazorLearning.Utilities", "ReazorLearning.Utilities\ReazorLearning.Utilities.csproj", "{6324D9F0-5D44-4031-A983-FC773D03A5E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReazorLearning.Utilities", "ReazorLearning.Utilities\ReazorLearning.Utilities.csproj", "{6324D9F0-5D44-4031-A983-FC773D03A5E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

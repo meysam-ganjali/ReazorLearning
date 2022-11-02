@@ -20,14 +20,12 @@ namespace ReazorLearning.Pages.Admin.Category
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (Category.DisplayOrder < 1)
-            {
-                ModelState.AddModelError("","DispalyOrder Can Not 0<");
-            }
+           
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(Category);
                 await _db.SaveChangesAsync();
+                TempData["Msg"] = "Categoe Created.";
                 return RedirectToPage(nameof(Index));
             }
             return Page();

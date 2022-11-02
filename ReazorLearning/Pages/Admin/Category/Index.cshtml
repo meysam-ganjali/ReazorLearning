@@ -3,6 +3,14 @@
 @{
 }
 <div class="container p3">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   @if (TempData["Msg"] != null)
+   {
+       <script type="text/javascript">
+        toastr.success('@TempData["Msg"]')
+    </script>
+   }
     <div class="row p-4">
         <div class="col-6">
             <h2 class="text-primary">Category List</h2>
@@ -49,8 +57,8 @@
                         <td>@category.DisplayOrder</td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-info"><i class="bi bi-pencil"></i></a>
-                                <a class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                <a class="btn btn-info" asp-page="Edit" asp-route-id="@category.Id"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger" asp-page="Delete" asp-route-id="@category.Id"><i class="bi bi-trash"></i></a>
                             </div>
                         </td>
                     </tr>
