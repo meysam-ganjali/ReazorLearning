@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ReazorLearning.DataLayer.Data;
+using ReazorLearning.DataLayer.Repository.IRepository;
 
 namespace ReazorLearning.Pages.Admin.FoodType
 {
     public class CreateModel : PageModel
     {
-        private readonly DataBaseContext _db;
+        private readonly IFoodTypeRepository _foodType;
 
-        public CreateModel(DataBaseContext db)
+        public CreateModel(IFoodTypeRepository foodType)
         {
-            _db = db;
+            _foodType = foodType;
         }
         [BindProperty]
         public ReazorLearninig.Models.Models.FoodType FoodType { get; set; }
@@ -22,8 +23,8 @@ namespace ReazorLearning.Pages.Admin.FoodType
         {
             if (ModelState.IsValid)
             {
-                _db.FoodTypes.Add(FoodType);
-                await _db.SaveChangesAsync();
+                _foodType.Add(FoodType);
+                _foodType.Save();
                 TempData["Msg"] = "Food Type Created.";
                 return RedirectToPage(nameof(Index));
             }

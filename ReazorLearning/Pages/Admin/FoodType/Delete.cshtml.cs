@@ -1,22 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ReazorLearning.DataLayer.Data;
+using ReazorLearning.DataLayer.Repository.IRepository;
 
 namespace ReazorLearning.Pages.Admin.FoodType
 {
     public class DeleteModel : PageModel
     {
-        private readonly DataBaseContext _db;
+        private readonly IFoodTypeRepository _foodType;
 
-        public DeleteModel(DataBaseContext db)
+        public DeleteModel(IFoodTypeRepository foodType)
         {
-            _db = db;
+            _foodType = foodType;
         }
         [BindProperty]
         public ReazorLearninig.Models.Models.FoodType FoodType { get; set; }
         public async  Task<IActionResult> OnGetAsync(int id)
         {
-            FoodType = await _db.FoodTypes.FindAsync(id);
+            FoodType = _foodType.GetFirstOrDefault(c => c.Id.Equals(id));
             if (FoodType == null)
             {
                 return NotFound();
@@ -27,9 +28,9 @@ namespace ReazorLearning.Pages.Admin.FoodType
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var foodType = await _db.FoodTypes.FindAsync(FoodType.Id);
-            _db.FoodTypes.Remove(foodType);
-            await _db.SaveChangesAsync();
+            var foodType = _foodType.GetFirstOrDefault(c => c.Id.Equals(FoodType.Id));
+           _foodType.Remove(foodType);
+           _foodType.Save();
             TempData["Msg"] = "Food Type Deleted.";
             return RedirectToPage(nameof(Index));
         }

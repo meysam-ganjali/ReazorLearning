@@ -12,6 +12,7 @@ builder.Services.AddDbContext<DataBaseContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("LernReazorPage"));
 });
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IFoodTypeRepository, FoodTypeRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -2,31 +2,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ReazorLearning.DataLayer.Data;
+using ReazorLearning.DataLayer.Repository.IRepository;
 
 namespace ReazorLearning.Pages.Admin.Category
 {
     public class IndexModel : PageModel
     {
-        private readonly DataBaseContext _db;
+        private readonly ICategoryRepository _category;
 
-        public IndexModel(DataBaseContext db)
+        public IndexModel(ICategoryRepository category)
         {
-            _db = db;
+            _category = category;
         }
 
         public IEnumerable<ReazorLearninig.Models.Models.Category> Categories { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string order="des")
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (order == "des")
-            {
-                Categories = await _db.Categories.OrderByDescending(a => a.DisplayOrder).ToListAsync();
-            }
-
-            if (order == "asi")
-            {
-                 Categories = await _db.Categories.OrderBy(a => a.DisplayOrder).ToListAsync();
-            }
+            Categories = _category.GetAll();
            
             return Page();
         }
