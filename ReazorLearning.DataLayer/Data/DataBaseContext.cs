@@ -14,6 +14,7 @@ public class DataBaseContext : IdentityDbContext<IdentityUser>
     public DbSet<Category> Categories { get; set; }
     public DbSet<FoodType> FoodTypes { get; set; }
     public DbSet<MenuItem> MenuItems { get; set; }
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
