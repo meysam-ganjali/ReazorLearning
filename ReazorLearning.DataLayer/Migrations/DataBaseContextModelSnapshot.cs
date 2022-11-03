@@ -84,8 +84,8 @@ namespace ReazorLearning.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Price")
-                        .HasColumnType("bigint");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
