@@ -13,9 +13,13 @@ builder.Services.AddDbContext<DataBaseContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("LernReazorPage"));
 });
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<DataBaseContext>();
+
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<DataBaseContext>();
+
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,8 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
-
+app.UseAuthentication(); ;
 app.UseAuthorization();
 
 app.MapRazorPages();
