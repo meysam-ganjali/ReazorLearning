@@ -11,12 +11,14 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(DataBaseContext db)
     {
         _db = db;
-        Category = new CategoryRepository(db);
-        FoodType = new FoodTypeRepository(db);
+        Category = new CategoryRepository(_db);
+        FoodType = new FoodTypeRepository(_db);
+        MenuItem = new MenuItemRepository(_db);
     }
 
     public ICategoryRepository Category { get; private set; }
     public IFoodTypeRepository FoodType { get; private set; }
+    public IMenuItemRepository MenuItem { get; private set; }
     public void Save()
     {
         _db.SaveChanges();

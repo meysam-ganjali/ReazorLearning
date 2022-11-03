@@ -1,10 +1,10 @@
 ﻿@font-face {
     font-family: 'IRSans';
-    src: url('/fonts/IRANSansWeb.woff') format('woff'), url('/fonts/IRANSansWeb.woff2') format('woff2');
+    src:url('/fonts/IRANSansWeb.eot') format('eot'), url('/fonts/IRANSansWeb.woff') format('woff'), url('/fonts/IRANSansWeb.woff2') format('woff2');
 }
 @font-face {
     font-family: 'IRSansB';
-    src: url('/fonts/IRANSans-Bold.woffb.woff') format('woff'), url('/fonts/IRANSans-Bold.woff2') format('woff2');
+    src: url('/fonts/IRANSans-Bold.eot') format('eot'),url('/fonts/IRANSans-Bold.woffb.woff') format('woff'), url('/fonts/IRANSans-Bold.woff2') format('woff2');
 }
 body {
     font-family: IRSans;

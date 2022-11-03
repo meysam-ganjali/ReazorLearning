@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ReazorLearning.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <link rel="stylesheet" href="~/css/Font.css"/>
+    @*<link rel="stylesheet" href="~/css/Font.css"/>*@
 </head>
 <body>
     <header>
@@ -19,13 +19,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">خانه</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">مدیریت</a>
+                            <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-page="/Admin/Category/index">دسته بندی</a>
-                                <a class="dropdown-item" asp-page="/Admin/FoodType/index">نوع غذا</a>
+                                <a class="dropdown-item" asp-page="/Admin/Category/index">Categories</a>
+                                <a class="dropdown-item" asp-page="/Admin/FoodType/index">Food Types</a>
+                                <a class="dropdown-item" asp-page="/Admin/MenuItem/index">Menu Items</a>
                                 <div class="dropdown-divider"></div>
                             </div>
                         </li>
@@ -50,7 +51,7 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
