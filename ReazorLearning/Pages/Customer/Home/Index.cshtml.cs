@@ -19,7 +19,7 @@ namespace ReazorLearning.Pages.Customer.Home
         public void OnGet()
         {
             MenuItems = _unitOfWork.MenuItem.GetAll(includeProperties:"Category,FoodType");
-            Categories = _unitOfWork.Category.GetAll();
+            Categories = _unitOfWork.Category.GetAll(orderby:u=>u.OrderByDescending(c=>c.DisplayOrder));
 
         }
     }

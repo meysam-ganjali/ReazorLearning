@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ReazorLearninig.Models.Models;
 
 namespace ReazorLearning.DataLayer.Data;
 
-public class DataBaseContext : DbContext
+public class DataBaseContext : IdentityDbContext
 {
     public DataBaseContext(DbContextOptions<DataBaseContext> options):base(options)
     {

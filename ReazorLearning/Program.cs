@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ReazorLearning.DataLayer.Data;
 using ReazorLearning.DataLayer.Repository;
 using ReazorLearning.DataLayer.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ builder.Services.AddDbContext<DataBaseContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("LernReazorPage"));
 });
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<DataBaseContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
@@ -26,6 +30,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
