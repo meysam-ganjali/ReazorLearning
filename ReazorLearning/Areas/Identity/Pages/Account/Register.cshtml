@@ -1,4 +1,5 @@
 ﻿@page
+@using ReazorLearning.Utilities
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
@@ -52,14 +53,14 @@ else
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-          @*  @if (User.IsInRole(SD.ManagerRole))
-            {
+           @* @if (User.IsInRole(SD.ManagerRole))
+            {*@
                 <div class="form-floating my-2">
-                    <input type="radio" name="rdUserRole" value="@SD.ManagerRole" />@SD.ManagerRole
-                    <input type="radio" name="rdUserRole" value="@SD.KitchenRole" />@SD.KitchenRole
-                    <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole" />@SD.FrontDeskRole
+                    <input type="radio" name="rdUserRole" class="checkbox" value="@SD.ManagerRole" />@SD.ManagerRole<br/>
+                    <input type="radio" name="rdUserRole" class="checkbox" value="@SD.KitchenRole" />@SD.KitchenRole<br/>
+                    <input type="radio" name="rdUserRole" class="checkbox" value="@SD.FrontDeskRole" />@SD.FrontDeskRole<br/>
                 </div>
-            }*@
+            @*}*@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">Register</button>
         </form>
     </div>

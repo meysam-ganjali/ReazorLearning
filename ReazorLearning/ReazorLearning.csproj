@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReazorLearning.DataLayer\ReazorLearning.DataLayer.csproj" />
+    <ProjectReference Include="..\ReazorLearning.Utilities\ReazorLearning.Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

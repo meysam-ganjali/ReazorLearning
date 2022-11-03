@@ -3,6 +3,8 @@ using ReazorLearning.DataLayer.Data;
 using ReazorLearning.DataLayer.Repository;
 using ReazorLearning.DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ReazorLearning.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,11 @@ builder.Services.AddDbContext<DataBaseContext>(option =>
 });
 
 
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<DataBaseContext>();
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<DataBaseContext>().AddDefaultTokenProviders();
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 
