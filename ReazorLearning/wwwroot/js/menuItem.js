@@ -16,7 +16,7 @@ $(document).ready(function () {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="btn-group" >
-                            <a href="/Admin/MenuItem/upsert?id=${data}"  class="btn btn-success text-white mx-2">
+                            <a href="/Admin/MenuItem/upsert?id=${data}"  class="btn btn-primary text-white mx-2">
                             <i class="bi bi-pencil-square"></i>  </a>
                             <a onClick=Delete('/api/MenuItem/'+${data})  class="btn btn-danger text-white mx-2">
                              <i class="bi bi-trash-fill"></i>  </a>
@@ -35,7 +35,7 @@ function Delete(url) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
