@@ -14,6 +14,6 @@ public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderReposi
     }
     public void Update(OrderHeader order)
     {
-        throw new NotImplementedException();
+        _db.OrderHeaders.Update(order);
     }
 }
