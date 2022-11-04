@@ -81,7 +81,7 @@
                                     {
                                         <li class="list-group-item d-flex justify-content-between">
                                             <div>
-                                               <h6 class="my-0">@detail.MenuItem.Name</h6>
+                                                <h6 class="my-0">@detail.MenuItem.Name</h6>
                                                 <small class="text-muted">Quantity: @detail.Count</small>
                                             </div>
                                             <span class="text-muted">$@(detail.MenuItem.Price * detail.Count)</span>
@@ -109,3 +109,7 @@
         </div>
     </div>
 </form>
+@section Scripts
+{
+    <partial name="Shared/_ValidationScriptsPartial"/>
+}
