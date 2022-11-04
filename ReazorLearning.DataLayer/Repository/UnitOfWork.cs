@@ -17,6 +17,7 @@ public class UnitOfWork : IUnitOfWork
         ShoppingCart = new ShoppingCartRepository(_db);
         OrderHeader = new OrderHeaderRepository(_db);
         OrderDetail = new OrderDetailRepository(_db);
+        ApplicationUser = new ApplicationUserRepository(_db);
     }
 
     public ICategoryRepository Category { get; private set; }
@@ -25,6 +26,7 @@ public class UnitOfWork : IUnitOfWork
     public IShoppingCartRepository ShoppingCart { get; private set; }
     public IOrderHeaderRepository OrderHeader { get; private set; }
     public IOrderDetailRepository OrderDetail { get; private set; }
+    public IApplicationUserRepository ApplicationUser { get; private set; }
     public void Save()
     {
         _db.SaveChanges();

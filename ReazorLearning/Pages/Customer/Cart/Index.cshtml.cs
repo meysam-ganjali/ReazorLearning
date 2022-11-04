@@ -11,14 +11,15 @@ namespace ReazorLearning.Pages.Customer.Cart
     public class IndexModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
-
+        public double TotalPrice { get; set; }
         public IndexModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            TotalPrice = 0;
         }
 
         public IEnumerable<ShoppingCart> ShoppingCarts { get; set; }
-        public double TotalPrice { get; set; }
+
         public void OnGet()
         {
             var claimIdentity = (ClaimsIdentity)User.Identity;
@@ -37,7 +38,7 @@ namespace ReazorLearning.Pages.Customer.Cart
 
         public IActionResult OnPostPlus(int cartId)
         {
-            var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(filter: c => c.Id==cartId);
+            var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(filter: c => c.Id == cartId);
             _unitOfWork.ShoppingCart.IncrementCount(cart, 1);
             TempData["Msg"] = "Plus Item In Cart";
             return RedirectToPage("/Customer/Cart/Index");

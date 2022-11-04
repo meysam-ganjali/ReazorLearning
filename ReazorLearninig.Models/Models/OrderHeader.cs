@@ -36,13 +36,13 @@ public class OrderHeader
 
     public string? Comments { get; set; }
 
-   //public string? SessionId { get; set; }
-    //public string? PaymentIntentId { get; set; }
+    public string? SessionId { get; set; }
+    public string? PaymentIntentId { get; set; }
 
-    //[Display(Name = "Pickup Name")]
-    //[Required]
-    //public string PickupName { get; set; }
-    //[Required]
-    //[Display(Name = "Phone Number")]
-    //public string PhoneNumber { get; set; }
+    [Display(Name = "Pickup Name")]
+    [Required]
+    public string PickupName { get; set; }
+    [Required]
+    [Display(Name = "Phone Number")]
+    public string PhoneNumber { get; set; }
 }
