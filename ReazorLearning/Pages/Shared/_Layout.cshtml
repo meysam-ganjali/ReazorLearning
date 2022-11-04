@@ -33,21 +33,25 @@
                         </li>
                         @if (User.IsInRole(SD.ManagerRole))
                         {
- <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-page="/Admin/Category/index">Categories</a>
-                                <a class="dropdown-item" asp-page="/Admin/FoodType/index">Food Types</a>
-                                <a class="dropdown-item" asp-page="/Admin/MenuItem/index">Menu Items</a>
-                                <div class="dropdown-divider"></div>
-                            </div>
-                        </li>
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-page="/Admin/Category/index">Categories</a>
+                                    <a class="dropdown-item" asp-page="/Admin/FoodType/index">Food Types</a>
+                                    <a class="dropdown-item" asp-page="/Admin/MenuItem/index">Menu Items</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </li>
                         }
-                       
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Customer/Cart/Index">
+                                <i class="bi bi-cart"></i>
+                            </a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
-              
+
             </div>
         </nav>
     </header>
@@ -57,12 +61,12 @@
         </main>
     </div>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-<script src="//cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
