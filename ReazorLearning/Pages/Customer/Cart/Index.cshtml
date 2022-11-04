@@ -2,67 +2,85 @@
 @model ReazorLearning.Pages.Customer.Cart.IndexModel
 @{
 }
-<div class="container p3">
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    @if (TempData["Msg"] != null)
+<form method="post">
+    @if (Model.ShoppingCarts.Count() == 0)
     {
-        <script type="text/javascript">
-            toastr.success('@TempData["Msg"]')
-        </script>
+        <div>
+            Please add items to shopping cart.
+        </div>
     }
+    else
+    {
+<div class="container p3">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        @if (TempData["Msg"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["Msg"]')
+            </script>
+        }
 
-    <div class="row mt-3 p-1">
-        <table class="table border border-1">
-            <thead style="background: darkslategray">
-                <tr >
+        <div class="row mt-3 p-1">
+            <table class="table border border-1">
+                <thead style="background: darkslategray">
+                <tr>
                     <th colspan="2" class="text-light">Shopping Cart</th>
                     <th colspan="2" style="text-align: right">
-                        <button class="btn btn-outline-primary" >Continu Selling</button>
+                        <a asp-page="/Customer/Home/index" class="btn btn-outline-primary">Cuntino Shopping</a>
                     </th>
                 </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model.ShoppingCarts)
-            {
+                </thead>
+                <tbody>
+                @foreach (var item in Model.ShoppingCarts)
+                {
+                    <tr>
+                        <td><img src="@item.MenuItem.Image" width="48" height="48"/></td>
+                        <td>
+                            @item.MenuItem.Name
+                            <div>
+                                <span class="badge bg-info">
+                                    @item.MenuItem.FoodType.Name
+                                </span>
+                                <span class="badge bg-warning">
+                                    @item.MenuItem.Category.Name
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            @item.MenuItem.Price.ToString("c0") &nbsp; X @item.Count
+                            <button type="submit" class="btn btn-primary"
+                                    asp-page-handler="plus" asp-route-cartId="@item.Id">
+                                <i class="bi bi-plus-square"></i>
+                            </button>
+                            <button type="submit" class="btn btn-danger"
+                                    asp-page-handler="minus" asp-route-cartId="@item.Id">
+                                <i class="bi bi-dash-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="submit" asp-page-handler="remove" asp-route-cartId="@item.Id" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+                <tfoot>
                 <tr>
-                    <td><img src="@item.MenuItem.Image" width="48" height="48" /></td>
-                    <td>
-                        @item.MenuItem.Name
-                        <div>
-                            <span class="badge bg-info">
-                                @item.MenuItem.FoodType.Name
-                            </span>
-                            <span class="badge bg-warning">
-                                @item.MenuItem.Category.Name
-                            </span>
-                        </div>
-                    </td>
-                    <td>
-                            @item.MenuItem.Price.ToString("c0") &nbsp; X  @item.Count
-                        <button class="btn btn-danger"><i class="bi bi-plus"></i></button>
-                        <button class="btn btn-success"><i class="bi bi-plus"></i></button>
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                    <td colspan="3"></td>
+                    <td colspan="1" class="text-info border border-1" style="text-align: right">
+                        Total Price: &nbsp; @Model.TotalPrice.ToString("c0")
                     </td>
                 </tr>
-            }
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="3"></td>
-                <td colspan="1" class="text-info border border-1" style="text-align: right">
-                    Total Price: &nbsp; @Model.TotalPrice.ToString("c0")
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td colspan="1"  style="text-align: right;">
-                    <button class="btn btn-success w-100">SUMMARY</button>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="1" style="text-align: right;">
+                        <button class="btn btn-success w-100">SUMMARY</button>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
-</div>
+    }
+    
+</form>
