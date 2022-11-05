@@ -1,10 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ReazorLearning.DataLayer.Repository.IRepository;
 using ReazorLearninig.Models.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using ReazorLearning.Utilities;
+using Stripe.Checkout;
 
 namespace ReazorLearning.Pages.Customer.Cart
 {
@@ -80,12 +81,58 @@ namespace ReazorLearning.Pages.Customer.Cart
 
                 }
 
+                int quantity = ShoppingCarts.ToList().Count;
                 _unitOfWork.ShoppingCart.RemoveRange(ShoppingCarts);
                 _unitOfWork.Save();
-                return RedirectToPage("/Customer/Home/Index");
+                /************** Stripe Action******************/
+                var domain = "https://localhost:44369/";
+                var options = new SessionCreateOptions
+                {
+                    LineItems = new List<SessionLineItemOptions>()
+                    ,
+                    PaymentMethodTypes = new List<string>
+                    {
+                        "card",
+                    },
+                    Mode = "payment",
+                    SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={OrderHeader.Id}",
+                    CancelUrl = domain + "customer/cart/index",
+                };
 
+                //add line items
+                foreach (var item in ShoppingCarts)
+                {
+                    var sessionLineItem = new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            //7.99->799
+                            UnitAmount = (long)(item.MenuItem.Price * 100),
+                            Currency = "usd",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = item.MenuItem.Name
+                            },
+                        },
+                        Quantity = item.Count
+                    };
+                    options.LineItems.Add(sessionLineItem);
+                }
+
+
+
+                var service = new SessionService();
+                Session session = service.Create(options);
+                Response.Headers.Add("Location", session.Url);
+
+                OrderHeader.SessionId = session.Id;
+                OrderHeader.PaymentIntentId = session.PaymentIntentId;
+                _unitOfWork.Save();
+                return new StatusCodeResult(303);
+                /************** End Stripe******************/
             }
+
             return Page();
         }
     }
-}
+} 

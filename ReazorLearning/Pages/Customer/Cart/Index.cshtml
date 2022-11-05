@@ -48,7 +48,7 @@
                             </div>
                         </td>
                         <td>
-                            @item.MenuItem.Price.ToString("c0") &nbsp; X @item.Count
+                            @item.MenuItem.Price.ToString("0.00") &nbsp; X @item.Count
                             <button type="submit" class="btn btn-primary"
                                     asp-page-handler="plus" asp-route-cartId="@item.Id">
                                 <i class="bi bi-plus-square"></i>
@@ -68,7 +68,7 @@
                 <tr>
                     <td colspan="3"></td>
                     <td colspan="1" class="text-info border border-1" style="text-align: right">
-                        Total Price: &nbsp; @Model.TotalPrice.ToString("c0")
+                        Total Price: &nbsp; @Model.TotalPrice.ToString("0.00")
                     </td>
                 </tr>
                 <tr>

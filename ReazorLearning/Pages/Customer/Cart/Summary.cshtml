@@ -1,5 +1,8 @@
 ﻿@page
 @model ReazorLearning.Pages.Customer.Cart.SummaryModel
+@inject IOptions<ReazorLearning.Utilities.StripeSettings> Stripe
+@using Microsoft.Extensions.Options
+
 @{
 }
 <form method="post">
@@ -101,7 +104,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-4 offset-md-8">
-                            <button type="submit" id="btnPlaceOrder" value="Place Order" class="btn btn-success form-control">Place Order</button>
+                            <button  type="submit" id="btnPlaceOrder" value="Place Order" class="btn btn-success form-control">Place Order</button>
                         </div>
                     </div>
                 </div>
@@ -111,5 +114,7 @@
 </form>
 @section Scripts
 {
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <partial name="Shared/_ValidationScriptsPartial"/>
 }

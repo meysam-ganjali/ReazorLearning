@@ -5,6 +5,9 @@ using ReazorLearning.DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ReazorLearning.Utilities;
+using ZarinPal.Class;
+using Microsoft.Extensions.DependencyInjection;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +17,7 @@ builder.Services.AddDbContext<DataBaseContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("LernReazorPage"));
 });
-
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<DataBaseContext>().AddDefaultTokenProviders();
 
@@ -41,6 +44,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+string key = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+StripeConfiguration.ApiKey = key;
+
 app.UseAuthentication(); ;
 app.UseAuthorization();
 
