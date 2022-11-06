@@ -82,8 +82,8 @@ namespace ReazorLearning.Pages.Customer.Cart
                 }
 
                 int quantity = ShoppingCarts.ToList().Count;
-                _unitOfWork.ShoppingCart.RemoveRange(ShoppingCarts);
-                _unitOfWork.Save();
+                //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCarts);
+                //_unitOfWork.Save();
                 /************** Stripe Action******************/
                 var domain = "https://localhost:44369/";
                 var options = new SessionCreateOptions

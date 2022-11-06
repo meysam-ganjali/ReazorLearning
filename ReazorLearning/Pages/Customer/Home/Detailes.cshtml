@@ -29,7 +29,7 @@
                                         <h3 class="text-success"></h3>
                                         <p class="text-secondary">@Html.Raw(Model.ShoppingCart.MenuItem.Description)</p>
                                         <div class="form-floating my-2">
-                                            <input asp-for="ShoppingCart.Count" class="form-control" aria-required="true" type="number" />
+                                            <input asp-for="ShoppingCart.Count" class="form-control" aria-required="true" value="1" type="number" />
                                             <label asp-for="ShoppingCart.Count"></label>
                                             <span asp-validation-for="ShoppingCart.Count" class="text-danger"></span>
                                         </div>
