@@ -43,4 +43,8 @@
     <Folder Include="wwwroot\images\menuItems\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Pages\Shared\Components\ShoppingCart\Default.cshtml" />
+  </ItemGroup>
+
 </Project>

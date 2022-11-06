@@ -24,6 +24,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\ReazorLearning.Utilities\ReazorLearning.Utilities.csproj" />
 	  <ProjectReference Include="..\ReazorLearninig.Models\ReazorLearninig.Models.csproj" />
 	</ItemGroup>
 </Project>

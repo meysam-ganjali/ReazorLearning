@@ -16,4 +16,12 @@ public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderReposi
     {
         _db.OrderHeaders.Update(order);
     }
+    public void UpdateStatus(int id, string status)
+    {
+        var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
+        if (orderFromDb != null)
+        {
+            orderFromDb.Status = status;
+        }
+    }
 }
